@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Oussama Troudi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #141414;
+    --muted: #6a6a6a;
+    --rule: #e4e4e4;
+    --accent: #b9410f;
+    --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+    --sans: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #101010; --ink: #ebebeb; --muted: #9b9b9b; --rule: #2a2a2a; --accent: #f08a55; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg: #101010; --ink: #ebebeb; --muted: #9b9b9b; --rule: #2a2a2a; --accent: #f08a55; color-scheme: dark; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 17px; line-height: 1.6;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 0 80px;
+  }
+  .page { max-width: 1080px; margin: 0 auto; }
+  .prose { max-width: 660px; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; line-height: 1.1; letter-spacing: -0.005em; text-wrap: balance; }
+  h1 { font-size: clamp(40px, 6vw, 64px); }
+  h2 { font-size: clamp(32px, 4.5vw, 44px); }
+  h3 { font-size: 26px; margin-top: 40px; }
+  p { margin: 0 0 1.15em; }
+  p:last-child { margin-bottom: 0; }
+  a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  em { font-family: var(--serif); font-style: italic; font-size: 1.08em; }
+  small, .small { font-size: 14px; color: var(--muted); }
+  code { font-family: var(--mono); font-size: 0.88em; }
+
+  .brief { margin: 40px 0 0; display: grid; grid-template-columns: max-content 1fr; column-gap: 28px; font-size: 16px; }
+  .brief dt { font-family: var(--serif); font-size: 21px; padding: 12px 0; border-top: 1px solid var(--rule); }
+  .brief dd { margin: 0; padding: 13px 0; border-top: 1px solid var(--rule); color: var(--muted); }
+  @media (max-width: 560px) { .brief { grid-template-columns: 1fr; } .brief dd { border-top: 0; padding-top: 0; } }
+
+  header.top { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding-block: 26px; border-bottom: 1px solid var(--rule); }
+  header.top .name { font-family: var(--serif); font-size: 22px; text-decoration: none; }
+  header.top nav { display: flex; gap: 22px; font-size: 15px; }
+  header.top nav a { text-decoration: none; color: var(--muted); }
+  header.top nav a:hover { color: var(--ink); }
+
+  .intro { padding-block: 72px 56px; }
+  .intro p { font-size: 19px; }
+  .intro h1 { margin-bottom: 28px; }
+
+  .worklist { border-top: 1px solid var(--rule); margin-top: 24px; }
+  .worklist a { display: grid; grid-template-columns: 2.2em minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--rule); text-decoration: none; }
+  .worklist a:hover .title { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+  .worklist .n { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+  .worklist .title { font-family: var(--serif); font-size: 24px; line-height: 1.2; }
+  .worklist .line { display: block; color: var(--muted); font-size: 15px; margin-top: 4px; font-family: var(--sans); }
+  .worklist .year { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  @media (max-width: 560px) { .worklist a { grid-template-columns: 2.2em minmax(0, 1fr); } .worklist .year { grid-column: 2; } }
+
+  article { padding-top: 88px; }
+  article header { margin-bottom: 36px; }
+  article header .kicker { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+  article header .dek { font-family: var(--serif); font-style: italic; font-size: 24px; line-height: 1.3; color: var(--muted); margin-top: 16px; max-width: 32em; }
+  .facts { font-size: 14px; color: var(--muted); margin-top: 18px; }
+  .facts span + span::before { content: "·"; margin: 0 8px; }
+
+  figure { margin: 36px 0; }
+  figure img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); }
+  figcaption { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--muted); margin-top: 10px; max-width: 52em; }
+  .wide { max-width: 1080px; }
+  .pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin: 36px 0; }
+  .pair figure { margin: 0; }
+
+  /* Plain tables, hairlines only. */
+  table { border-collapse: collapse; width: 100%; font-size: 15.5px; margin: 28px 0; }
+  th, td { text-align: left; vertical-align: top; padding: 12px 14px 12px 0; border-bottom: 1px solid var(--rule); }
+  th { font-weight: 500; color: var(--muted); font-size: 14px; }
+  td:first-child { white-space: nowrap; font-weight: 500; }
+  .scroll { overflow-x: auto; }
+  .scroll table { min-width: 640px; }
+
+  dl.timeline { margin: 28px 0; display: grid; grid-template-columns: max-content 1fr; column-gap: 28px; row-gap: 0; }
+  dl.timeline dt { font-family: var(--mono); font-size: 13px; color: var(--muted); padding: 12px 0; border-top: 1px solid var(--rule); }
+  dl.timeline dd { margin: 0; padding: 11px 0; border-top: 1px solid var(--rule); }
+  dl.timeline dd b { font-weight: 500; }
+
+  ol.plain, ul.plain { padding-left: 1.2em; margin: 0 0 1.15em; }
+  ol.plain li, ul.plain li { margin-bottom: 8px; }
+
+  pre { font-family: var(--mono); font-size: 13.5px; line-height: 1.65; border: 1px solid var(--rule); padding: 16px 18px; overflow-x: auto; margin: 24px 0; background: transparent; }
+  pre .c { color: var(--muted); }
+  pre .x { color: var(--accent); }
+
+  aside.note { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--muted); max-width: 36em; margin: 28px 0; padding-left: 18px; border-left: 1px solid var(--rule); }
+
+  section.about, section.colophon { padding-top: 88px; }
+  footer { margin-top: 88px; padding-top: 24px; border-top: 1px solid var(--rule); font-size: 15px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 28px; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="top">
+    <a class="name" href="#top" id="top">Oussama Troudi</a>
+    <nav><a href="#work">Work</a><a href="#about">About</a><a href="#colophon">Colophon</a></nav>
+  </header>
+
+  <section class="intro prose">
+    <h1>I build the software a 911 floor runs on.</h1>
+    <p>Telephony that has to keep working when a server dies, screens that have to be read from across a room, and the security and release work around them. I'm a software engineer based in Tunis, part of a team in Québec, working in French and English, mostly in Node.js and React. I came to engineering through media arts, so I design the interfaces I build, and for much of the past two years I've been the bridge between the developers and the QA team.</p>
+    <p>Below are six pieces of work from the past year, written up in some detail. Names of the company, its products and its customers are left out on purpose, and every screenshot shows simulated data.</p>
+    <dl class="brief">
+      <dt>Engineering</dt><dd>Full-stack JavaScript and TypeScript: Node.js services, React interfaces, SQL Server, real-time push, telephony on FreeSWITCH, high availability.</dd>
+      <dt>Design</dt><dd>Interfaces that look right and serve the business, benchmarked and measured before they ship.</dd>
+      <dt>Quality</dt><dd>Test suites, CI pipelines and signed releases, and the link between development and QA that keeps review rounds short.</dd>
+    </dl>
+  </section>
+
+  <section id="work">
+    <div class="worklist">
+      <a href="#wallboard"><span class="n">01</span><span><span class="title">A live wallboard wired into a 911 phone system</span><span class="line">Real-time telephony on a TV, designed and built end to end</span></span><span class="year">2026</span></a>
+      <a href="#failover"><span class="n">02</span><span><span class="title">Keeping calls alive through a failover</span><span class="line">High availability for a call distributor on a FreeSWITCH pair</span></span><span class="year">2026</span></a>
+      <a href="#proxy"><span class="n">03</span><span><span class="title">An edge proxy that renews its own certificate</span><span class="line">From a legacy script to a production service, with 288 tests</span></span><span class="year">2026</span></a>
+      <a href="#security"><span class="n">04</span><span><span class="title">Thirty security fixes, and the one that mattered</span><span class="line">XSS, SQL injection, SSRF and path traversal across a product suite</span></span><span class="year">2026</span></a>
+      <a href="#release"><span class="n">05</span><span><span class="title">From a commit to a signed installer</span><span class="line">Tests, signing, containers and installers for a Windows suite</span></span><span class="year">2025–26</span></a>
+      <a href="#ai"><span class="n">06</span><span><span class="title">Working with coding agents, accountably</span><span class="line">Attribution, measurement and the rules I keep</span></span><span class="year">2026</span></a>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <article id="wallboard">
+    <header class="prose">
+      <div class="kicker">01 · Telephony, real-time interface</div>
+      <h2>A live wallboard wired into a 911 phone system</h2>
+      <p class="dek">Supervisors need to know, within seconds and from across the room, whether callers are waiting and whether anyone is free to answer. The board I built tells them, and it can never look live when it isn't.</p>
+      <div class="facts"><span>Design and full-stack development</span><span>Node.js, React, SQL Server, Socket.IO</span><span>872 tests</span></div>
+    </header>
+    <figure class="wide"><img src="img/wallboard/0-architecture.png" alt="Diagram: SIP calls reach a redundant FreeSWITCH pair with its call distributor, which writes SQL Server; one shared reader pushes changes to every screen" loading="lazy"><figcaption>The path from a 911 call to the wall. One reader serves every screen, however many there are.</figcaption></figure>
+    <div class="prose">
+      <p>A 911 center runs on its phone system. Calls arrive over SIP, an automatic call distributor queues them and hands each one to the first free call-taker, and a redundant pair of FreeSWITCH servers keeps all of it running when a machine fails. Supervisors had no live view of any of this at the scale of a room, and nothing warned them when the numbers they did have had stopped updating. On an emergency floor that is the worst failure there is: a frozen screen that still looks fine.</p>
+      <p>The distributor writes every queue change, every agent state and every finished call to SQL Server. I read those tables with one shared poller, every two seconds, and push only what changed to the browsers. The distributor didn't publish everything the wall needed, so I extended it: how long the oldest caller has been waiting right now, when the process started, and whether its database writes are failing. Those go out on a small health page that the board checks every five seconds.</p>
+      <p>The design came from a benchmark before any code. Motorola's VESTA heads-up display gave me the structure and the discipline: a fixed table, color only on the number that is wrong, and a plain-language alert line. Geomant's boards gave me the readability of an icon beside a big number. The palette is navy plus one orange family at two strengths, chosen so warning and critical stay apart in grayscale and on a cheap TV.</p>
+    </div>
+    <div class="pair">
+      <figure><img src="img/wallboard/1-calm-afternoon.png" alt="The wallboard on a calm afternoon: nothing waiting, 97 percent of calls answered within 15 seconds" loading="lazy"><figcaption>A calm afternoon. Zeros recede into gray; a dash means nothing is waiting.</figcaption></figure>
+      <figure><img src="img/wallboard/2-incident.png" alt="The wallboard during an incident: the Fire queue has three callers waiting and no one free" loading="lazy"><figcaption>An incident. Only the cells that are wrong turn orange, and each tile in alert names the queue behind it.</figcaption></figure>
+      <figure><img src="img/wallboard/5-phone-system-unreachable.png" alt="The wallboard grayed out under a banner saying the call distributor is unreachable" loading="lazy"><figcaption>The phone system stops answering. The board says since when and grays everything.</figcaption></figure>
+      <figure><img src="img/wallboard/7-editor.png" alt="The on-screen editor beside a live preview of the whole screen" loading="lazy"><figcaption>Supervisors change the board themselves, beside a live preview. Nothing reaches the wall until they save.</figcaption></figure>
+    </div>
+    <div class="prose">
+      <p>I tested it against a simulator that writes the tables exactly as the distributor does, and then against the real thing: a two-node FreeSWITCH pair with a witness, registered SIP agents, a console and live callers. Forced failovers, distributor restarts, and a four-hour soak with calls arriving every forty seconds. The soak left one thing I still can't fully explain, a 44-second window where the board and the tables disagreed with no warning shown. It never came back in a timed rerun, and every other difference lasted three to five seconds, but I wrote it down in the pull request rather than round it away.</p>
+      <p>Before opening the review I did two passes on it the way a design reviewer would, one for use and one for looks, and fixed what I found: a tile that turned orange without saying which queue was behind it, an info icon placed where a click could toggle the wrong switch, a path to the alert levels that took one click too many.</p>
+    </div>
+    <figure class="wide"><img src="img/wallboard/3-night-shift-dark.png" alt="The same incident in dark mode" loading="lazy"><figcaption>The same incident on the night shift, in dark mode.</figcaption></figure>
+  </article>
+
+  <!-- 02 -->
+  <article id="failover">
+    <header class="prose">
+      <div class="kicker">02 · Telephony, high availability</div>
+      <h2>Keeping calls alive through a failover</h2>
+      <p class="dek">When the active server dies, the backup takes over. A call distributor that started fresh would forget who was waiting and who was on a break. I made the takeover keep both.</p>
+      <div class="facts"><span>FreeSWITCH, keepalived, Puppet, nftables</span><span>Node.js</span><span>Integration-tested on a real pair</span></div>
+    </header>
+    <div class="prose">
+      <p>The distributor runs on a pair of servers that share a virtual IP, moved by keepalived with a witness to break ties. The first problem was simple to state: if both nodes run the distributor and both write the same tables, every number on the wall doubles. So only the node holding the virtual IP may run it. I wired that into keepalived's notify script and into the Puppet configuration, with a bounded stop on demotion so a node leaving the role can't keep writing.</p>
+      <p>The second problem was the interesting one. FreeSWITCH recovers the calls that were in progress when a node fails, but a distributor starting on the new node knows nothing about them. I made it rebuild its call state from the live channels, queue the recovered callers again (by destination, because FreeSWITCH swaps From and To on a recovered call), offer each one only once even if an earlier process had already taken it, and give every agent back the work mode they had before the takeover. A call-taker on a break stays on a break; one that was ready is ready.</p>
+      <dl class="timeline">
+        <dt>t = 0</dt><dd><b>The active node fails</b> mid-shift.</dd>
+        <dt>seconds</dt><dd>keepalived moves the virtual IP to the backup; the backup starts the distributor, the old one is stopped.</dd>
+        <dt>on start</dt><dd>Call state rebuilt from FreeSWITCH's channels; registered agents restored; recovered callers queued again.</dd>
+        <dt>on start</dt><dd>Agents get back their previous work mode, for this first recovery only.</dd>
+        <dt>≈ 18 s</dt><dd>The wallboard says “Not up to date”, then “ACD restarted” once the new node writes, then it is live.</dd>
+      </dl>
+      <p>The shared tables themselves survive a restart now. Rows are reconciled rather than wiped; a stale agent row is removed in that agent's own turn, and only if it is still unknown then. The metrics port the wallboard reads is open to the wallboard servers only, through an nftables table that Puppet reloads with the node's ruleset on every run, not only when the file changes.</p>
+      <p>All of it was proven on a real lab pair with registered SIP agents and SIPp callers: integration scenarios for the takeover, the restored work modes and the recovered callers, plus container tests for the configuration, including a node leaving the pair and a standalone node that must still start once keepalived is gone.</p>
+    </div>
+  </article>
+
+  <!-- 03 -->
+  <article id="proxy">
+    <header class="prose">
+      <div class="kicker">03 · Infrastructure</div>
+      <h2>An edge proxy that renews its own certificate</h2>
+      <p class="dek">A whole suite of applications sits behind one address and one certificate. I took over the small legacy script that did it and made it a service you can forget about.</p>
+      <div class="facts"><span>Node.js 24 on Windows Server</span><span>ACME, TLS 1.3, WebSocket</span><span>288 tests, 97.5 % coverage</span></div>
+    </header>
+    <figure class="wide"><img src="img/proxy/0-architecture.png" alt="Diagram of the edge proxy: clients on the left, the proxy and what it does in the middle, the application servers on the right, and the certificate cycle underneath" loading="lazy"><figcaption>One front door for every application, and a certificate that issues, renews and swaps itself.</figcaption></figure>
+    <div class="prose">
+      <p>When I got it, the proxy was one file. Certificates were installed by hand and renewed by hand, a typo in its configuration could take every application down at once, and there were no tests. An expired certificate on an emergency-services network is an outage, so that was the first thing I fixed.</p>
+      <p>The proxy now issues and renews its own Let's Encrypt certificate over ACME DNS-01, as a wildcard or for a list of names, through the DNS provider's API behind one small interface (two providers are supported). It checks once a day, renews thirty days before expiry, backs up the bundle in service, and swaps the new certificate onto the running HTTPS server without a restart. If the swap fails, the old certificate stays.</p>
+      <p>The part I'm fondest of is how the bundle is written to disk. The certificate, its key and a metadata file are staged as <code>.new</code> files, then promoted in a fixed order with the metadata file last, because the loader accepts a bundle only when all three exist. A power cut at any step leaves a complete bundle or none, and “none” just means the proxy issues a new one. What it can never leave is a certificate paired with the wrong key, which would stop the server from starting at all. This took three rewrites and one argument with an automated reviewer that was sure Windows couldn't rename over an existing file. It can.</p>
+    </div>
+    <div class="pair">
+      <figure><img src="img/proxy/1-routing.png" alt="Terminal output: requests routed by Host name answering 200, 502 and 404" loading="lazy"><figcaption>Routing that fails clearly: a fast 502 for a stopped server, a 404 for an unknown name.</figcaption></figure>
+      <figure><img src="img/proxy/2-tls.png" alt="Terminal output: TLS 1.3 negotiated, TLS 1.1 refused, an HTTPS redirect and a WebSocket upgrade" loading="lazy"><figcaption>TLS 1.3, old versions refused by policy, HTTP sent to HTTPS, WebSockets upgraded.</figcaption></figure>
+      <figure><img src="img/proxy/3-hot-reload.png" alt="Terminal output: a new route live in 1.6 seconds and a broken configuration rolled back in 5.2 seconds" loading="lazy"><figcaption>A new route live 1.6 s after saving. A broken save rolled back in 5.2 s while every request was still answered.</figcaption></figure>
+      <figure><img src="img/proxy/4-certificates.png" alt="The certificate lifecycle from order to live, and the crash-safe write order" loading="lazy"><figcaption>From order to live without anyone touching it, and the write order that makes it safe.</figcaption></figure>
+    </div>
+    <div class="prose">
+      <p>Routes change while the proxy runs, because the configuration file is watched; a bad save is put back to the last good version in about five seconds and traffic never stops. Along the way I upgraded it to Node 24, fixed a race in the DNS validation of wildcard certificates, rebuilt the WebSocket path so an upstream error no longer crashes the process, and wrote the test suite from nothing: 288 tests, run on Windows and Linux on every change, with the release package built only when they pass.</p>
+    </div>
+  </article>
+
+  <!-- 04 -->
+  <article id="security">
+    <header class="prose">
+      <div class="kicker">04 · Application security</div>
+      <h2>Thirty security fixes, and the one that mattered</h2>
+      <p class="dek">Over six months I fixed about thirty issues across a suite of call-center applications. Most were small. The useful one was noticing why they kept coming back.</p>
+      <div class="facts"><span>OWASP Top 10</span><span>A regression test for every fix</span></div>
+    </header>
+    <div class="prose">
+      <p>The suite is a decade old and has grown by plugin. Each plugin drew saved names, notes, tags and log lines into the page in its own way, and some of those ways didn't escape anything. I fixed the stored cross-site scripting one sink at a time at first, then stopped and did what should have been done years earlier: a single shared escaping helper for the whole suite, with the copies in each module routed through it. After that the safe call was the easy call, and the class of bug stopped reappearing in review.</p>
+      <div class="scroll">
+      <table>
+        <thead><tr><th>Class</th><th>Where it lived</th><th>What I did</th></tr></thead>
+        <tbody>
+          <tr><td>Stored XSS</td><td>Dozens of places drawing saved text into the page</td><td>Escape at output everywhere, then one shared helper for the suite</td></tr>
+          <tr><td>Untrusted HTML</td><td>Email previews and rich-text notes that must keep their formatting</td><td>An allowlist sanitizer in a sandboxed frame, tested against the real library</td></tr>
+          <tr><td>SQL injection</td><td>A sign-in claim, saved layouts, audit logging, a user filter language</td><td>Parameterized queries throughout; a quote-aware parser for the filters</td></tr>
+          <tr><td>SSRF</td><td>Admin screens that make the server call another address</td><td>Allowlist and port checks before any outbound request, IPv6 and link-local included</td></tr>
+          <tr><td>Path traversal</td><td>File download, image upload and delete, mail attachments</td><td>Names confined to their directory; null bytes rejected; types and sizes limited</td></tr>
+          <tr><td>Leaks</td><td>Server and database errors returned to the browser</td><td>Generic errors to the client, the details to the log</td></tr>
+        </tbody>
+      </table>
+      </div>
+<pre><span class="c">// Before: each screen escaped on its own, or forgot to.</span>
+row.innerHTML = `&lt;td&gt;${name}&lt;/td&gt;`;              <span class="x">// unsafe</span>
+
+<span class="c">// After: one helper, used everywhere output is drawn.</span>
+row.innerHTML = `&lt;td&gt;${escapeHtml(name)}&lt;/td&gt;`;
+<span class="c">// Or, where there is no reason to build HTML at all:</span>
+cell.textContent = name;</pre>
+      <p>I worked the same way on each one: a failing test first, kept afterwards as the regression test; then a search for the same pattern elsewhere in the suite, because a bug that exists once usually exists three times; then a small, reviewable change with its reasoning in the pull request. Validation at the edge and escaping at output, never one without the other.</p>
+      <aside class="note">The specifics stay general here on purpose. The product, its modules and the details of each issue belong to my employer.</aside>
+    </div>
+  </article>
+
+  <!-- 05 -->
+  <article id="release">
+    <header class="prose">
+      <div class="kicker">05 · Release engineering</div>
+      <h2>From a commit to a signed installer</h2>
+      <p class="dek">A suite of Windows services ships to emergency centers as installers. I worked on most of the distance between a commit and a trustworthy install.</p>
+      <div class="facts"><span>Jenkins, GitHub Actions</span><span>Jest</span><span>Inno Setup, Delphi</span><span>Windows containers</span></div>
+    </header>
+    <div class="prose">
+      <p>The tests came first, because nothing else is worth much without them. The main codebase's suites used a mix of older mocking libraries; I moved them to Jest, organized by project, with xUnit reports and trend graphs in Jenkins so a failure is visible without opening a log. The plugin suites could only run serially, because parallel workers crashed; I found why, fixed it, and dropped the serial flag, which cut the runtime substantially. Later I turned the console noise down so that what remains in a CI log is the failure.</p>
+      <p>Then the artifacts. Every installer the suite produces is now code-signed in the pipeline, interim setups and archives included, replacing a step that injected a signed executable into a built package and broke when anyone looked at it. Versions come from GitVersion. A database check flags a schema change shipped without a version bump. Two of the Node services got Windows containers, built and pushed to a registry by CI.</p>
+      <p>The installers themselves had a quiet security problem: the database and service passwords they set up were passed to child processes on the command line, where any user on the machine could read them in a process list. I moved them into the environment, isolated per child process, and wrote a test that asserts no password ever appears on a command line again. The same round of work made repairs and updates respect what is already installed: existing ports are read back, a free port is found or the install stops, and a guess is never written to disk.</p>
+      <ol class="plain">
+        <li>Commit, with a version from GitVersion.</li>
+        <li>Test on Windows and Linux, in parallel, with reports in CI.</li>
+        <li>Check the schema version.</li>
+        <li>Build the services, the setups and the container images.</li>
+        <li>Sign every installer and archive.</li>
+        <li>Install: firewall rules, service descriptions, safe ports, secrets off the command line.</li>
+      </ol>
+    </div>
+  </article>
+
+  <!-- 06 -->
+  <article id="ai">
+    <header class="prose">
+      <div class="kicker">06 · Practice</div>
+      <h2>Working with coding agents, accountably</h2>
+      <p class="dek">I use coding agents every day and treat their output the way I'd treat a sharp junior colleague's: reviewed, tested, and credited.</p>
+    </header>
+    <div class="prose">
+      <p>Two things I set up for the teams around me. The first is an attribution standard: every commit made with an agent's help carries a co-author trailer naming the tool, so the share of AI-assisted work can be counted instead of guessed from commit messages. The second is a report that classifies merged pull requests as verified AI, likely AI or human-only, by project and by author, every two weeks, so the question “is this helping?” gets an answer with numbers in it.</p>
+      <p>In the repositories themselves I wrote the rules the agents follow: check for an existing ticket before filing one, label what an agent created, put the ticket in every pull-request title. And a few rules I keep for myself. An agent's change is finished when its tests and a live check pass, not when it compiles. A review comment is checked against the code before it's acted on, because reviewers, human and otherwise, are wrong often enough. Anything that leaves the machine, a push, a ticket, a message, waits for an explicit yes from a person.</p>
+      <p>The wallboard above is the best example of what that looks like in practice: most of the code was written with an agent, all of it was tested on a real phone system, and the parts I'm proudest of are the decisions, not the typing.</p>
+    </div>
+  </article>
+
+  <section class="about prose" id="about">
+    <h2>About</h2>
+    <p>I'm based in Tunis and work with a team in Québec, in both languages, which matters more than it sounds when the users are 911 call-takers and the labels on a wall have to read the same way in French and English. My background is full-stack, with the past two years spent close to telephony, security and the release pipeline of a public-safety software suite.</p>
+    <p>Before engineering I studied media arts, which is why the interfaces here were designed rather than assembled. And for much of that time I sat between development and QA: writing the reproduction steps, agreeing on what finished means, and getting each fix to the testers in a form they could trust.</p>
+    <p>I like problems where being wrong has a cost, and I like to design what I build. The habit that defines how I work is checking things on the real system before claiming them: a real PBX pair rather than a mock, a TV across the room rather than a laptop, a four-hour soak rather than a demo that works once.</p>
+    <p><small>Now: handing over the wallboard for review, and writing more of these.</small></p>
+  </section>
+
+  <section class="colophon prose" id="colophon">
+    <h2>Colophon</h2>
+    <p>Set in Instrument Serif and Instrument Sans. Hand-written HTML and CSS, no framework, no tracking. The screenshots were taken from the real systems running against simulated data; the diagrams were drawn in HTML and rendered to images. Last updated 6 November 2026.</p>
+  </section>
+
+  <footer>
+    <span><a href="mailto:troudioussama24@gmail.com">troudioussama24@gmail.com</a></span>
+    <span><a href="https://www.linkedin.com/in/oussamatroudi/">linkedin.com/in/oussamatroudi</a></span>
+  </footer>
+</div>
+</body>
+</html>
